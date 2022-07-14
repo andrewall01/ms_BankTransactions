@@ -6,8 +6,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.data.mongodb.config.EnableReactiveMongoAuditing;
 
 @SpringBootApplication
-@EnableReactiveMongoAuditing
 @EnableEurekaClient
+@EnableReactiveMongoAuditing
 public class MsBankTransactionsApplication {
 
 	public static void main(String[] args) {
