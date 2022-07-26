@@ -1,6 +1,9 @@
 package com.project.ms.bank.transactions.application.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +24,14 @@ public class TransactionRestController {
 	@PostMapping("/save")
 	public Mono<Transaction> saveTransaction(@RequestBody Transaction transaction) {
 		return transactionService.save(transaction);
+	}
+
+	//Resiliencia
+	@GetMapping("/amount/{account}")
+	public Mono<ResponseEntity<Transaction>> findTransactionAmountByAccount(@PathVariable("account") String account){
+    	return transactionService.findTransactionAmountByAccount(account)
+    			.map(ResponseEntity::ok)
+    			.defaultIfEmpty(ResponseEntity.noContent().build());
 	}
 
 }

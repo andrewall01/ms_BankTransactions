@@ -20,4 +20,9 @@ public class TransactionServiceImpl implements TransactionService {
 		return transactionDao.save(transaction);
 	}
 
+	@Override
+	public Mono<Transaction> findTransactionAmountByAccount(String account) {
+		return transactionDao.findTransactionAmountByAccount(account);
+	}
+
 }

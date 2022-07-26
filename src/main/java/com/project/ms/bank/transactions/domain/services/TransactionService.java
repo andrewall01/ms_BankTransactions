@@ -8,4 +8,6 @@ public interface TransactionService {
 
 	public Mono<Transaction> save(Transaction transaction);
 
+	public Mono<Transaction> findTransactionAmountByAccount(String account);
+
 }
